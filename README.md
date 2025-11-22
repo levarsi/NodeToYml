@@ -1,6 +1,7 @@
 # NodeToYml
 
 NodeToYml 是一个现代化的 Web 应用程序，旨在将各种代理节点配置转换为兼容 Clash Verge 的 YAML 文件。它拥有基于 Vue 3 和 Naive UI 构建的流畅、用户友好的界面。
+![alt text](image.png)
 
 ## 功能特性
 
