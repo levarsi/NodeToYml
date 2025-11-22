@@ -37,7 +37,7 @@ NodeToYml 是一个现代化的 Web 应用程序，旨在将各种代理节点�
 1. 克隆仓库：
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/levarsi/NodeToYml.git
    cd NodeToYml
    ```
 
