@@ -277,9 +277,29 @@ const handleUploadChange = (data) => {
     </n-message-provider>
   </n-config-provider>
 </template>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+#app {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+</style>
 
 <style scoped>
 .app-container {
+  width: 100vw;
   min-height: 100vh;
   background: radial-gradient(circle at top right, #1e1b4b, #0f172a, #1e1b4b);
   color: #f1f5f9;
@@ -327,9 +347,9 @@ const handleUploadChange = (data) => {
 .content-wrapper {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 1rem;
+  max-width: 100%;
+  margin: 0;
+  padding: 2rem 2rem;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -365,6 +385,7 @@ const handleUploadChange = (data) => {
   margin: 0;
   background: linear-gradient(to right, #c7d2fe, #ffffff, #c7d2fe);
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
   letter-spacing: -0.02em;
 }
