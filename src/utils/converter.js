@@ -191,7 +191,8 @@ const parseHysteria2 = (link) => {
 export const parseLinks = (text) => {
   const lines = text.split(/[\r\n]+/);
   const proxies = [];
-  
+  const nameCount = {};
+
   lines.forEach(line => {
     line = line.trim();
     if (!line) return;
@@ -212,6 +213,13 @@ export const parseLinks = (text) => {
     }
     
     if (proxy) {
+      let name = proxy.name;
+      if (nameCount[name]) {
+        nameCount[name]++;
+        proxy.name = `${name}_${nameCount[name]}`;
+      } else {
+        nameCount[name] = 1;
+      }
       proxies.push(proxy);
     }
   });
