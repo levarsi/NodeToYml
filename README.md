@@ -66,6 +66,37 @@ npm run build
 
 构建产物将存储在 `dist/` 目录中。
 
+### 预览构建
+
+> [!WARNING] > **不能直接双击打开 `dist/index.html`！** 由于浏览器的 CORS 安全策略，通过 `file://` 协议无法加载 JavaScript 模块，页面会显示空白。
+
+**推荐方法：使用 Vite 预览服务器**
+
+```bash
+npm run preview
+```
+
+然后在浏览器中访问 `http://localhost:4173`
+
+**其他预览方法：**
+
+1. 使用 Python 简单服务器：
+
+   ```bash
+   cd dist
+   python -m http.server 8080
+   ```
+
+   访问 `http://localhost:8080`
+
+2. 使用 npx serve：
+
+   ```bash
+   npx serve dist
+   ```
+
+3. 部署到 Vercel/Netlify（推荐用于生产环境）- 参见下文部署章节
+
 ## 部署到 Vercel
 
 本项目已配置好 Vercel 部署，只需几步即可上线：
