@@ -78,6 +78,8 @@ npm run preview
 
 然后在浏览器中访问 `http://localhost:4173`
 
+要停止预览服务器，在终端中按 `Ctrl+C`
+
 **其他预览方法：**
 
 1. 使用 Python 简单服务器：
