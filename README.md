@@ -76,7 +76,7 @@ npm run build
 npm run preview
 ```
 
-然后在浏览器中访问 `http://localhost:4173`
+然后在浏览器中访问 `http://localhost:4173` （或终端中显示的 URL）
 
 要停止预览服务器，在终端中按 `Ctrl+C`
 
