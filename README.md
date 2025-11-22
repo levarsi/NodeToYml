@@ -66,6 +66,92 @@ npm run build
 
 构建产物将存储在 `dist/` 目录中。
 
+## 部署到 Vercel
+
+本项目已配置好 Vercel 部署，只需几步即可上线：
+
+### 方法一：通过 Vercel Dashboard（推荐）
+
+1. 访问 [Vercel](https://vercel.com/) 并登录（可使用 GitHub 账号）
+2. 点击 "Add New Project"
+3. 导入您的 GitHub 仓库
+4. Vercel 会自动检测到这是一个 Vite 项目并配置好构建设置
+5. 点击 "Deploy" 开始部署
+
+### 方法二：通过 Vercel CLI
+
+1. 安装 Vercel CLI：
+
+   ```bash
+   npm install -g vercel
+   ```
+
+2. 在项目目录中运行：
+
+   ```bash
+   vercel
+   ```
+
+3. 按照提示完成部署
+
+### 自动部署
+
+将代码推送到 GitHub 后，Vercel 会自动：
+
+- 检测到新的提交
+- 自动构建和部署
+- 为每个分支生成预览 URL
+- 主分支自动部署到生产环境
+
+## 部署到 Netlify
+
+本项目也支持部署到 Netlify：
+
+### 方法一：通过 Netlify Dashboard（推荐）
+
+1. 访问 [Netlify](https://www.netlify.com/) 并登录（可使用 GitHub 账号）
+2. 点击 "Add new site" → "Import an existing project"
+3. 选择 GitHub 并授权访问您的仓库
+4. 选择 NodeToYml 仓库
+5. Netlify 会自动检测构建设置：
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+6. 点击 "Deploy site"
+
+### 方法二：通过 Netlify CLI
+
+1. 安装 Netlify CLI：
+
+   ```bash
+   npm install -g netlify-cli
+   ```
+
+2. 登录 Netlify：
+
+   ```bash
+   netlify login
+   ```
+
+3. 在项目目录中运行：
+
+   ```bash
+   netlify init
+   ```
+
+4. 部署：
+   ```bash
+   netlify deploy --prod
+   ```
+
+### 自动部署
+
+配置完成后，Netlify 会自动：
+
+- 监测 GitHub 仓库的提交
+- 自动构建和部署
+- 为每个 Pull Request 生成预览部署
+- 主分支自动部署到生产环境
+
 ## 使用指南
 
 1. **输入链接**：将您的代理节点链接（每行一个）粘贴到输入区域。
