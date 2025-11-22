@@ -5,13 +5,14 @@ NodeToYml 是一个现代化的 Web 应用程序，旨在将各种代理节点�
 ## 功能特性
 
 - **多协议支持**：无缝解析和转换以下协议的链接：
-  - VMess
-  - VLESS
-  - Trojan
-  - Shadowsocks (SS)
-  - TUIC
-  - Hysteria2
+  - VMess (`vmess://`)
+  - VLESS (`vless://`)
+  - Trojan (`trojan://`)
+  - Shadowsocks (`ss://`)
+  - TUIC (`tuic://`)
+  - Hysteria2 (`hysteria2://`, `hy2://`)
 - **兼容 Clash Verge**：生成可直接用于 Clash Verge 的标准 YAML 配置。
+- **智能去重**：自动检测并处理重复的节点名称，防止配置冲突。
 - **现代化 UI**：使用 Naive UI 和 Lucide 图标设计的简洁响应式界面。
 - **本地处理**：所有解析和转换逻辑均在浏览器本地运行，确保隐私和速度。
 

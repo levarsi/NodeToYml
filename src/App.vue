@@ -120,12 +120,14 @@ const handleUploadChange = (data) => {
         <div class="content-wrapper">
           <!-- Header -->
           <div class="header">
-            <div class="logo-container">
-              <n-icon size="32" color="#818cf8">
-                <Sparkles />
-              </n-icon>
+            <div class="title-row">
+              <div class="logo-container">
+                <n-icon size="32" color="#818cf8">
+                  <Sparkles />
+                </n-icon>
+              </div>
+              <h1 class="title">NodeToYml</h1>
             </div>
-            <h1 class="title">NodeToYml</h1>
             <p class="subtitle">
               下一代节点转换工具。支持
               <span class="highlight"
@@ -344,16 +346,23 @@ const handleUploadChange = (data) => {
   padding: 12px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  margin-bottom: 1.5rem;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
 .title {
   font-size: 3.5rem;
   font-weight: 900;
-  margin: 0 0 1rem;
+  margin: 0;
   background: linear-gradient(to right, #c7d2fe, #ffffff, #c7d2fe);
   -webkit-background-clip: text;
   color: transparent;
