@@ -157,7 +157,7 @@ const handleUploadChange = (data) => {
                       <n-input
                         v-model:value="input"
                         type="textarea"
-                        placeholder="在此粘贴节点链接...&#10;vmess://...&#10;vless://...&#10;hy2://...&#10;&#10;或者将文件拖拽至此..."
+                        placeholder="在此粘贴节点链接...&#10;vmess://...&#10;vless://...&#10;hysteria2://...&#10;&#10;或者将文件拖拽至此..."
                         :autosize="{ minRows: 12, maxRows: 12 }"
                         class="custom-textarea"
                       />
@@ -419,10 +419,15 @@ const handleUploadChange = (data) => {
   z-index: 2;
 }
 
+.custom-textarea {
+  text-align: left;
+}
+
 .custom-textarea :deep(.n-input__textarea-el) {
   font-family: "JetBrains Mono", monospace;
   font-size: 0.9rem;
   line-height: 1.6;
+  text-align: left;
 }
 
 .upload-hint {
@@ -504,6 +509,7 @@ const handleUploadChange = (data) => {
   color: #34d399 !important;
   font-family: "JetBrains Mono", monospace;
   font-size: 0.85rem;
+  text-align: left;
 }
 
 .empty-state {
