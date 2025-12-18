@@ -144,13 +144,36 @@ const parseTuic = (link) => {
   try {
     const url = new URL(link);
     const params = new URLSearchParams(url.search);
+
+    const safeDecodeURIComponent = (value) => {
+      try {
+        return decodeURIComponent(value);
+      } catch {
+        return value;
+      }
+    };
+
+    const decodedUsername = safeDecodeURIComponent(url.username);
+    const decodedPassword = safeDecodeURIComponent(url.password);
+
+    let uuid = decodedUsername;
+    let password = decodedPassword;
+
+    // Some TUIC links encode the ':' between uuid and password as '%3A',
+    // which makes URL parse treat the whole thing as username and password empty.
+    if (!password && decodedUsername.includes(':')) {
+      const splitIndex = decodedUsername.indexOf(':');
+      uuid = decodedUsername.slice(0, splitIndex);
+      password = decodedUsername.slice(splitIndex + 1);
+    }
+
     return {
       name: decodeURIComponent(url.hash.slice(1)) || 'tuic',
       type: 'tuic',
       server: url.hostname,
       port: parseInt(url.port),
-      uuid: url.username,
-      password: url.password,
+      uuid,
+      password,
       'congestion-controller': params.get('congestion_control') || 'bbr',
       'udp-relay-mode': params.get('udp_relay_mode') || 'native',
       'reduce-rtt': true,
