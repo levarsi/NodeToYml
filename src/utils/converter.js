@@ -250,27 +250,72 @@ export const parseLinks = (text) => {
   return proxies;
 };
 
+const cleanValue = (value, options) => {
+  if (value === undefined || value === null) return undefined;
+
+  if (Array.isArray(value)) {
+    const cleanedArray = value
+      .map((item) => cleanValue(item, options))
+      .filter((item) => item !== undefined);
+    return cleanedArray.length > 0 ? cleanedArray : undefined;
+  }
+
+  if (typeof value === 'object') {
+    const cleanedObject = {};
+    for (const [key, val] of Object.entries(value)) {
+      const cleaned = cleanValue(val, options);
+
+      if (cleaned === undefined) continue;
+      if (cleaned === '' && !options.keepEmptyStringKeys.has(key)) continue;
+      if (typeof cleaned === 'object' && !Array.isArray(cleaned) && Object.keys(cleaned).length === 0) continue;
+
+      cleanedObject[key] = cleaned;
+    }
+    return Object.keys(cleanedObject).length > 0 ? cleanedObject : undefined;
+  }
+
+  return value;
+};
+
+const cleanConfig = (config) => {
+  const keepEmptyStringKeys = new Set(['uuid', 'password', 'server', 'name', 'type']);
+  const cleaned = cleanValue(config, { keepEmptyStringKeys });
+  return cleaned || {};
+};
+
 export const generateClashConfig = (proxies) => {
+  const cleanedProxies = proxies
+    .map((p) => cleanConfig(p))
+    .filter((p) => Object.keys(p).length > 0);
+
+  const proxyNames = cleanedProxies.map((p) => p.name);
+
   const config = {
-    proxies: proxies,
+    'mixed-port': 7890,
+    'allow-lan': true,
+    mode: 'rule',
+    'log-level': 'info',
+    ipv6: false,
+    'unified-delay': true,
+    proxies: cleanedProxies,
     'proxy-groups': [
       {
         name: 'Select',
         type: 'select',
-        proxies: proxies.map(p => p.name).concat(['DIRECT', 'REJECT'])
+        proxies: ['Auto'].concat(proxyNames).concat(['DIRECT', 'REJECT']),
       },
-       {
+      {
         name: 'Auto',
         type: 'url-test',
         url: 'http://www.gstatic.com/generate_204',
         interval: 300,
-        proxies: proxies.map(p => p.name)
-      }
+        tolerance: 50,
+        lazy: true,
+        proxies: proxyNames,
+      },
     ],
-    rules: [
-      'MATCH,Select'
-    ]
+    rules: ['MATCH,Select'],
   };
-  
-  return yaml.dump(config);
+
+  return yaml.dump(cleanConfig(config), { lineWidth: -1, noRefs: true });
 };
